@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local order storage
+.orders/
+
+# local dev tooling
+.claude/

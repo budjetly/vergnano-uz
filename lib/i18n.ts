@@ -1,0 +1,501 @@
+export const locales = ["uz", "ru", "en"] as const;
+export type Locale = (typeof locales)[number];
+export const defaultLocale: Locale = "uz";
+
+export const localeNames: Record<Locale, string> = {
+  uz: "O'zbekcha",
+  ru: "Русский",
+  en: "English",
+};
+
+const uz = {
+  nav: {
+    home: "Bosh sahifa",
+    about: "Biz haqimizda",
+    products: "Mahsulotlar",
+    contact: "Aloqa",
+    cart: "Savat",
+  },
+  tagline: "1882-yildan beri — Italiya qahva an'anasi",
+  hero: {
+    kicker: "O'zbekistondagi rasmiy distribyutor",
+    title: "Haqiqiy italyan espressosi — endi O'zbekistonda",
+    subtitle:
+      "Turin shahridan kelgan 140 yillik qahva mahorati. Caffè Vergnano mahsulotlarini biznesingiz va uyingiz uchun yetkazib beramiz.",
+    ctaProducts: "Mahsulotlarni ko'rish",
+    ctaContact: "Biz bilan bog'lanish",
+  },
+  home: {
+    statsYears: "yillik tajriba",
+    statsCountries: "mamlakatda seviladi",
+    statsProducts: "turdagi mahsulot",
+    b2bTitle: "Biznesingiz uchun ishonchli hamkor",
+    b2bText:
+      "Kafe, restoran, mehmonxona va ofislar uchun professional qahva yechimlari: donali qahva, kapsulalar, uskunalar bo'yicha maslahat va barqaror ta'minot.",
+    b2bCta: "Hamkorlik boshlash",
+    categoriesTitle: "Har bir ta'm uchun qahva",
+    categoriesSubtitle:
+      "Tayyorlash usulingizdan qat'i nazar — Vergnano ta'mi o'zgarmas.",
+    aboutTitle: "1882-yildan beri oilaviy an'ana",
+    aboutText:
+      "Caffè Vergnano — Italiyaning eng qadimgi qahva kompaniyalaridan biri. To'rt avlod davomida Turin yaqinidagi qovurish ustaxonasida mukammal espresso yaratib kelmoqda.",
+    aboutCta: "Tariximiz bilan tanishing",
+    featuredTitle: "Sevimli mahsulotlar",
+    featuredCta: "Barcha mahsulotlar",
+  },
+  about: {
+    title: "Biz haqimizda",
+    heroTitle: "Turin an'anasi — O'zbekiston mehmondo'stligi",
+    p1: "Caffè Vergnano 1882-yilda Turin viloyatining Chieri shahrida kichik do'kon sifatida ish boshlagan. Bugun u Italiyaning eng qadimgi oilaviy qahva kompaniyasi bo'lib, mahsulotlari 90 dan ortiq mamlakatda seviladi.",
+    p2: "Caffè Vergnano Uz — brendning O'zbekistondagi rasmiy importchisi va distribyutori. Biz mahsulotlarni bevosita Italiyadan olib kelamiz va mahalliy bozorda original sifatni kafolatlaymiz.",
+    missionTitle: "Bizning maqsad",
+    missionText:
+      "O'zbekiston qahva madaniyatini yuksaltirish — har bir kafe, ofis va xonadonga haqiqiy italyan espressosini yetkazish.",
+    valuesTitle: "Qadriyatlarimiz",
+    value1Title: "Sifat",
+    value1Text:
+      "Har bir partiya Italiyada qovuriladi va originalligini saqlagan holda yetkaziladi.",
+    value2Title: "Ishonch",
+    value2Text:
+      "B2B mijozlarimiz uchun barqaror ta'minot, halol narx va tezkor xizmat.",
+    value3Title: "An'ana",
+    value3Text:
+      "140 yildan ortiq qahva mahorati — to'rt avlod tajribasi har bir fincanda.",
+    b2bTitle: "B2B hamkorlik",
+    b2bText:
+      "Kafe, restoran, mehmonxona, ofis yoki do'koningiz uchun maxsus shartlar taklif qilamiz: ulgurji narxlar, muntazam yetkazib berish va mahsulot tanlashda professional maslahat.",
+  },
+  products: {
+    title: "Mahsulotlar",
+    subtitle:
+      "Italiyadan bevosita yetkazilgan original Caffè Vergnano assortimenti",
+    all: "Barchasi",
+    categories: {
+      beans: "Donali qahva",
+      ground: "Maydalangan qahva",
+      capsules: "Kapsulalar",
+      pods: "Chalda (ESE)",
+      accessories: "Aksessuarlar",
+    },
+    intensity: "Intensivlik",
+    addToCart: "Savatga qo'shish",
+    added: "Qo'shildi",
+    priceNote: "Narxlar chakana savdo uchun. Ulgurji narxlar uchun bog'laning.",
+    detail: {
+      blend: "Aralashma",
+      body: "To'liqlik",
+      tasteNotes: "Ta'm notalari",
+      roast: "Qovurish",
+      roastMedium: "O'rtacha",
+      roastDark: "To'q",
+      packSize: "Hajm",
+      qty: "Miqdor",
+      relatedTitle: "Mukammal hamroh",
+      craftLine:
+        "Har bir dona sekin qovuriladi — o'zgarmas hunarmand sifatining kafolati",
+      notes: {
+        caramel: "Karamel",
+        chocolate: "Shokolad",
+        milkChocolate: "Sutli shokolad",
+        cocoa: "Kakao",
+        vanilla: "Vanil",
+        citrus: "Sitrus",
+        redFruits: "Qizil mevalar",
+        yellowFruit: "Sariq mevalar",
+        nuts: "Yong'oqlar",
+        spices: "Ziravorlar",
+        tea: "Choy",
+        biscuit: "Pechene",
+        flowers: "Gullar",
+      },
+    },
+  },
+  cart: {
+    title: "Savat",
+    empty: "Savatingiz bo'sh",
+    emptyText: "Mahsulotlar sahifasidan sevimli qahvangizni tanlang.",
+    total: "Jami",
+    checkout: "Buyurtma berish",
+    remove: "O'chirish",
+    orderTitle: "Buyurtmani rasmiylashtirish",
+    name: "Ismingiz",
+    phone: "Telefon raqamingiz",
+    company: "Kompaniya (ixtiyoriy)",
+    comment: "Izoh (ixtiyoriy)",
+    submit: "Buyurtma yuborish",
+    sending: "Yuborilmoqda...",
+    successTitle: "Buyurtmangiz qabul qilindi!",
+    successText:
+      "Tez orada operatorlarimiz siz bilan bog'lanadi. Rahmat!",
+    payHint:
+      "Buyurtmani yakunlash uchun Telegram botimizda to'lovni amalga oshiring.",
+    payInTelegram: "Telegram orqali to'lash",
+    errorText:
+      "Xatolik yuz berdi. Iltimos, qayta urinib ko'ring yoki telefon orqali bog'laning.",
+    continueShopping: "Xaridni davom ettirish",
+  },
+  contact: {
+    title: "Aloqa",
+    subtitle: "Savollaringiz bormi? Biz bilan bog'laning — yordam beramiz.",
+    formTitle: "Xabar yuboring",
+    name: "Ismingiz",
+    phone: "Telefon",
+    email: "Email (ixtiyoriy)",
+    message: "Xabaringiz",
+    send: "Yuborish",
+    sending: "Yuborilmoqda...",
+    success: "Xabaringiz yuborildi! Tez orada javob beramiz.",
+    error: "Xatolik yuz berdi. Qayta urinib ko'ring.",
+    infoTitle: "Ma'lumotlar",
+    address: "Toshkent, O'zbekiston",
+    addressLabel: "Manzil",
+    phoneLabel: "Telefon",
+    emailLabel: "Email",
+    telegramLabel: "Telegram",
+    hoursLabel: "Ish vaqti",
+    hours: "Dushanba – Shanba, 9:00 – 18:00",
+    b2bTitle: "B2B mijozlar uchun",
+    b2bText:
+      "Ulgurji buyurtmalar va hamkorlik shartlari bo'yicha to'g'ridan-to'g'ri bog'laning — 24 soat ichida taklif tayyorlaymiz.",
+  },
+  footer: {
+    aboutText:
+      "Caffè Vergnano Uz — Italiyaning Caffè Vergnano 1882 brendining O'zbekistondagi rasmiy importchisi va distribyutori.",
+    linksTitle: "Sahifalar",
+    contactTitle: "Aloqa",
+    rights: "Barcha huquqlar himoyalangan.",
+    officialNote: "Caffè Vergnano S.p.A. (Italiya) rasmiy distribyutori",
+  },
+  currency: "so'm",
+};
+
+export type Dictionary = typeof uz;
+
+const ru: Dictionary = {
+  nav: {
+    home: "Главная",
+    about: "О нас",
+    products: "Продукция",
+    contact: "Контакты",
+    cart: "Корзина",
+  },
+  tagline: "Итальянская кофейная традиция с 1882 года",
+  hero: {
+    kicker: "Официальный дистрибьютор в Узбекистане",
+    title: "Настоящий итальянский эспрессо — теперь в Узбекистане",
+    subtitle:
+      "140 лет кофейного мастерства из Турина. Поставляем продукцию Caffè Vergnano для вашего бизнеса и дома.",
+    ctaProducts: "Смотреть продукцию",
+    ctaContact: "Связаться с нами",
+  },
+  home: {
+    statsYears: "лет опыта",
+    statsCountries: "странах мира",
+    statsProducts: "видов продукции",
+    b2bTitle: "Надёжный партнёр для вашего бизнеса",
+    b2bText:
+      "Профессиональные кофейные решения для кафе, ресторанов, отелей и офисов: зерновой кофе, капсулы, консультации по оборудованию и стабильные поставки.",
+    b2bCta: "Начать сотрудничество",
+    categoriesTitle: "Кофе на любой вкус",
+    categoriesSubtitle:
+      "Какой бы способ приготовления вы ни выбрали — вкус Vergnano неизменен.",
+    aboutTitle: "Семейная традиция с 1882 года",
+    aboutText:
+      "Caffè Vergnano — одна из старейших кофейных компаний Италии. Четыре поколения создают совершенный эспрессо в обжарочном цехе недалеко от Турина.",
+    aboutCta: "Узнать нашу историю",
+    featuredTitle: "Любимые продукты",
+    featuredCta: "Вся продукция",
+  },
+  about: {
+    title: "О нас",
+    heroTitle: "Туринская традиция — узбекское гостеприимство",
+    p1: "Caffè Vergnano начала свой путь в 1882 году как небольшая лавка в городе Кьери близ Турина. Сегодня это старейшая семейная кофейная компания Италии, продукцию которой любят более чем в 90 странах.",
+    p2: "Caffè Vergnano Uz — официальный импортёр и дистрибьютор бренда в Узбекистане. Мы привозим продукцию напрямую из Италии и гарантируем оригинальное качество на местном рынке.",
+    missionTitle: "Наша миссия",
+    missionText:
+      "Развивать кофейную культуру Узбекистана — донести настоящий итальянский эспрессо до каждого кафе, офиса и дома.",
+    valuesTitle: "Наши ценности",
+    value1Title: "Качество",
+    value1Text:
+      "Каждая партия обжаривается в Италии и доставляется с сохранением оригинальности.",
+    value2Title: "Надёжность",
+    value2Text:
+      "Стабильные поставки, честные цены и оперативный сервис для наших B2B-клиентов.",
+    value3Title: "Традиция",
+    value3Text:
+      "Более 140 лет кофейного мастерства — опыт четырёх поколений в каждой чашке.",
+    b2bTitle: "B2B-сотрудничество",
+    b2bText:
+      "Предлагаем специальные условия для кафе, ресторанов, отелей, офисов и магазинов: оптовые цены, регулярные поставки и профессиональные консультации по выбору продукции.",
+  },
+  products: {
+    title: "Продукция",
+    subtitle:
+      "Оригинальный ассортимент Caffè Vergnano, доставленный напрямую из Италии",
+    all: "Все",
+    categories: {
+      beans: "Кофе в зёрнах",
+      ground: "Молотый кофе",
+      capsules: "Капсулы",
+      pods: "Чалды (ESE)",
+      accessories: "Аксессуары",
+    },
+    intensity: "Интенсивность",
+    addToCart: "В корзину",
+    added: "Добавлено",
+    priceNote:
+      "Цены указаны для розницы. Оптовые цены — по запросу.",
+    detail: {
+      blend: "Смесь",
+      body: "Насыщенность",
+      tasteNotes: "Ноты вкуса",
+      roast: "Обжарка",
+      roastMedium: "Средняя",
+      roastDark: "Тёмная",
+      packSize: "Формат",
+      qty: "Количество",
+      relatedTitle: "Идеальное дополнение",
+      craftLine:
+        "Каждое зерно обжаривается медленно — гарантия неизменного ремесленного качества",
+      notes: {
+        caramel: "Карамель",
+        chocolate: "Шоколад",
+        milkChocolate: "Молочный шоколад",
+        cocoa: "Какао",
+        vanilla: "Ваниль",
+        citrus: "Цитрус",
+        redFruits: "Красные ягоды",
+        yellowFruit: "Жёлтые фрукты",
+        nuts: "Орехи",
+        spices: "Специи",
+        tea: "Чай",
+        biscuit: "Печенье",
+        flowers: "Цветы",
+      },
+    },
+  },
+  cart: {
+    title: "Корзина",
+    empty: "Ваша корзина пуста",
+    emptyText: "Выберите любимый кофе на странице продукции.",
+    total: "Итого",
+    checkout: "Оформить заказ",
+    remove: "Удалить",
+    orderTitle: "Оформление заказа",
+    name: "Ваше имя",
+    phone: "Номер телефона",
+    company: "Компания (необязательно)",
+    comment: "Комментарий (необязательно)",
+    submit: "Отправить заказ",
+    sending: "Отправка...",
+    successTitle: "Ваш заказ принят!",
+    successText: "Наши операторы свяжутся с вами в ближайшее время. Спасибо!",
+    payHint: "Чтобы завершить заказ, оплатите его в нашем Telegram-боте.",
+    payInTelegram: "Оплатить в Telegram",
+    errorText:
+      "Произошла ошибка. Попробуйте ещё раз или свяжитесь по телефону.",
+    continueShopping: "Продолжить покупки",
+  },
+  contact: {
+    title: "Контакты",
+    subtitle: "Есть вопросы? Свяжитесь с нами — мы поможем.",
+    formTitle: "Написать нам",
+    name: "Ваше имя",
+    phone: "Телефон",
+    email: "Email (необязательно)",
+    message: "Ваше сообщение",
+    send: "Отправить",
+    sending: "Отправка...",
+    success: "Сообщение отправлено! Мы скоро ответим.",
+    error: "Произошла ошибка. Попробуйте ещё раз.",
+    infoTitle: "Информация",
+    address: "Ташкент, Узбекистан",
+    addressLabel: "Адрес",
+    phoneLabel: "Телефон",
+    emailLabel: "Email",
+    telegramLabel: "Telegram",
+    hoursLabel: "Время работы",
+    hours: "Понедельник – Суббота, 9:00 – 18:00",
+    b2bTitle: "Для B2B-клиентов",
+    b2bText:
+      "По оптовым заказам и условиям сотрудничества свяжитесь напрямую — подготовим предложение в течение 24 часов.",
+  },
+  footer: {
+    aboutText:
+      "Caffè Vergnano Uz — официальный импортёр и дистрибьютор итальянского бренда Caffè Vergnano 1882 в Узбекистане.",
+    linksTitle: "Страницы",
+    contactTitle: "Контакты",
+    rights: "Все права защищены.",
+    officialNote: "Официальный дистрибьютор Caffè Vergnano S.p.A. (Италия)",
+  },
+  currency: "сум",
+};
+
+const en: Dictionary = {
+  nav: {
+    home: "Home",
+    about: "About Us",
+    products: "Products",
+    contact: "Contact",
+    cart: "Cart",
+  },
+  tagline: "Italian coffee tradition since 1882",
+  hero: {
+    kicker: "Official distributor in Uzbekistan",
+    title: "Authentic Italian espresso — now in Uzbekistan",
+    subtitle:
+      "140 years of coffee craftsmanship from Turin. We supply Caffè Vergnano products for your business and your home.",
+    ctaProducts: "Browse products",
+    ctaContact: "Get in touch",
+  },
+  home: {
+    statsYears: "years of craft",
+    statsCountries: "countries served",
+    statsProducts: "product varieties",
+    b2bTitle: "A reliable partner for your business",
+    b2bText:
+      "Professional coffee solutions for cafés, restaurants, hotels and offices: whole beans, capsules, equipment guidance and dependable supply.",
+    b2bCta: "Start a partnership",
+    categoriesTitle: "Coffee for every taste",
+    categoriesSubtitle:
+      "Whatever your brewing method — the Vergnano taste never changes.",
+    aboutTitle: "A family tradition since 1882",
+    aboutText:
+      "Caffè Vergnano is one of Italy's oldest coffee companies. For four generations, the family has crafted the perfect espresso at its roastery near Turin.",
+    aboutCta: "Discover our story",
+    featuredTitle: "Customer favourites",
+    featuredCta: "All products",
+  },
+  about: {
+    title: "About Us",
+    heroTitle: "Turin tradition — Uzbek hospitality",
+    p1: "Caffè Vergnano began in 1882 as a small shop in Chieri, near Turin. Today it is Italy's oldest family-run coffee company, loved in more than 90 countries.",
+    p2: "Caffè Vergnano Uz is the brand's official importer and distributor in Uzbekistan. We bring products directly from Italy and guarantee original quality on the local market.",
+    missionTitle: "Our mission",
+    missionText:
+      "To elevate Uzbekistan's coffee culture — bringing authentic Italian espresso to every café, office and home.",
+    valuesTitle: "Our values",
+    value1Title: "Quality",
+    value1Text:
+      "Every batch is roasted in Italy and delivered with its originality intact.",
+    value2Title: "Reliability",
+    value2Text:
+      "Dependable supply, honest pricing and responsive service for our B2B clients.",
+    value3Title: "Tradition",
+    value3Text:
+      "Over 140 years of coffee craftsmanship — four generations of expertise in every cup.",
+    b2bTitle: "B2B partnership",
+    b2bText:
+      "We offer tailored terms for cafés, restaurants, hotels, offices and retailers: wholesale pricing, regular deliveries and professional product guidance.",
+  },
+  products: {
+    title: "Products",
+    subtitle:
+      "The original Caffè Vergnano range, delivered directly from Italy",
+    all: "All",
+    categories: {
+      beans: "Whole beans",
+      ground: "Ground coffee",
+      capsules: "Capsules",
+      pods: "ESE pods",
+      accessories: "Accessories",
+    },
+    intensity: "Intensity",
+    addToCart: "Add to cart",
+    added: "Added",
+    priceNote: "Retail prices shown. Contact us for wholesale pricing.",
+    detail: {
+      blend: "Blend",
+      body: "Body",
+      tasteNotes: "Taste notes",
+      roast: "Roast",
+      roastMedium: "Medium",
+      roastDark: "Dark",
+      packSize: "Pack size",
+      qty: "Quantity",
+      relatedTitle: "The perfect pairing",
+      craftLine:
+        "Every bean is slow roasted — the guarantee of timeless artisan quality",
+      notes: {
+        caramel: "Caramel",
+        chocolate: "Chocolate",
+        milkChocolate: "Milk chocolate",
+        cocoa: "Cocoa",
+        vanilla: "Vanilla",
+        citrus: "Citrus",
+        redFruits: "Red fruits",
+        yellowFruit: "Yellow fruit",
+        nuts: "Nuts",
+        spices: "Spices",
+        tea: "Tea",
+        biscuit: "Biscuit",
+        flowers: "Flowers",
+      },
+    },
+  },
+  cart: {
+    title: "Cart",
+    empty: "Your cart is empty",
+    emptyText: "Pick your favourite coffee on the products page.",
+    total: "Total",
+    checkout: "Place order",
+    remove: "Remove",
+    orderTitle: "Complete your order",
+    name: "Your name",
+    phone: "Phone number",
+    company: "Company (optional)",
+    comment: "Comment (optional)",
+    submit: "Send order",
+    sending: "Sending...",
+    successTitle: "Your order has been received!",
+    successText: "Our team will contact you shortly. Thank you!",
+    payHint: "To complete your order, pay in our Telegram bot.",
+    payInTelegram: "Pay in Telegram",
+    errorText:
+      "Something went wrong. Please try again or contact us by phone.",
+    continueShopping: "Continue shopping",
+  },
+  contact: {
+    title: "Contact",
+    subtitle: "Have questions? Get in touch — we're happy to help.",
+    formTitle: "Send us a message",
+    name: "Your name",
+    phone: "Phone",
+    email: "Email (optional)",
+    message: "Your message",
+    send: "Send",
+    sending: "Sending...",
+    success: "Message sent! We'll reply soon.",
+    error: "Something went wrong. Please try again.",
+    infoTitle: "Details",
+    address: "Tashkent, Uzbekistan",
+    addressLabel: "Address",
+    phoneLabel: "Phone",
+    emailLabel: "Email",
+    telegramLabel: "Telegram",
+    hoursLabel: "Working hours",
+    hours: "Monday – Saturday, 9:00 – 18:00",
+    b2bTitle: "For B2B clients",
+    b2bText:
+      "For wholesale orders and partnership terms, contact us directly — we'll prepare an offer within 24 hours.",
+  },
+  footer: {
+    aboutText:
+      "Caffè Vergnano Uz is the official importer and distributor of Italy's Caffè Vergnano 1882 brand in Uzbekistan.",
+    linksTitle: "Pages",
+    contactTitle: "Contact",
+    rights: "All rights reserved.",
+    officialNote: "Official distributor of Caffè Vergnano S.p.A. (Italy)",
+  },
+  currency: "UZS",
+};
+
+export const dictionaries: Record<Locale, Dictionary> = { uz, ru, en };
+
+export function getDictionary(locale: string): Dictionary {
+  return dictionaries[(locale as Locale) in dictionaries ? (locale as Locale) : defaultLocale];
+}
+
+export function isLocale(value: string): value is Locale {
+  return (locales as readonly string[]).includes(value);
+}

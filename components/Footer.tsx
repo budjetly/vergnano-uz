@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { site } from "@/lib/site";
 import type { Locale, Dictionary } from "@/lib/i18n";
@@ -22,10 +23,21 @@ export default function Footer({
     <footer className="bg-espresso text-cream">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 md:grid-cols-3">
         <div>
-          <p className="font-display text-2xl font-bold">Caffè Vergnano</p>
-          <p className="mb-4 text-[10px] font-medium uppercase tracking-[0.35em] text-tan">
-            1882 · Uzbekistan
-          </p>
+          <div className="mb-4 flex items-center gap-3">
+            <Image
+              src="/images/logo-vergnano.png"
+              alt="Caffè Vergnano 1882"
+              width={48}
+              height={48}
+              className="h-12 w-12 shrink-0"
+            />
+            <div className="leading-none">
+              <p className="font-display text-2xl font-bold">Caffè Vergnano</p>
+              <p className="mt-1 text-[10px] font-medium uppercase tracking-[0.35em] text-tan">
+                1882 · Uzbekistan
+              </p>
+            </div>
+          </div>
           <p className="max-w-sm text-sm leading-relaxed text-cream/70">
             {dict.footer.aboutText}
           </p>

@@ -40,10 +40,10 @@ export default async function AboutPage({
           fill
           priority
           sizes="100vw"
-          className="object-cover opacity-35"
+          className="object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-espresso via-espresso/50 to-espresso/70" />
-        <div className="relative mx-auto flex min-h-[50vh] max-w-7xl flex-col items-center justify-center px-4 py-24 text-center">
+        <div className="absolute inset-0 bg-black/35" />
+        <div className="relative mx-auto flex min-h-[50vh] max-w-7xl flex-col items-center justify-center px-4 py-24 text-center [text-shadow:0_2px_24px_rgba(0,0,0,0.5)]">
           <p className="animate-fade-up mb-4 text-[11px] font-semibold uppercase tracking-[0.25em] text-tan">
             {dict.about.title}
           </p>

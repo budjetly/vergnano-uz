@@ -56,53 +56,9 @@ export default function Header({
         </p>
       </div>
       <div className="relative mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4">
-        <div className="flex items-center">
-          <button
-            onClick={() => setMenuOpen((v) => !v)}
-            aria-label="Menu"
-            className="rounded-full border border-espresso/15 p-2.5 lg:hidden"
-          >
-            <svg
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.8"
-              strokeLinecap="round"
-            >
-              {menuOpen ? (
-                <>
-                  <path d="M6 6l12 12" />
-                  <path d="M18 6L6 18" />
-                </>
-              ) : (
-                <>
-                  <path d="M4 7h16" />
-                  <path d="M4 12h16" />
-                  <path d="M4 17h16" />
-                </>
-              )}
-            </svg>
-          </button>
-          <nav className="hidden items-center gap-6 lg:flex">
-            {links.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`text-sm font-medium tracking-wide transition-colors hover:text-brand-red ${
-                  isActive(link.href) ? "text-brand-red" : "text-espresso"
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
-        </div>
-
         <Link
           href={`/${locale}`}
-          className="group absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center gap-3"
+          className="group flex shrink-0 items-center gap-3"
         >
           <Image
             src="/images/logo-vergnano.png"
@@ -121,6 +77,20 @@ export default function Header({
             </span>
           </span>
         </Link>
+
+          <nav className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center gap-6 lg:flex">
+            {links.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`text-sm font-medium tracking-wide transition-colors hover:text-brand-red ${
+                  isActive(link.href) ? "text-brand-red" : "text-espresso"
+                }`}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
 
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-1 rounded-full border border-espresso/15 p-0.5 text-xs">
@@ -166,6 +136,34 @@ export default function Header({
             )}
           </button>
 
+          <button
+            onClick={() => setMenuOpen((v) => !v)}
+            aria-label="Menu"
+            className="rounded-full border border-espresso/15 p-2.5 lg:hidden"
+          >
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.8"
+              strokeLinecap="round"
+            >
+              {menuOpen ? (
+                <>
+                  <path d="M6 6l12 12" />
+                  <path d="M18 6L6 18" />
+                </>
+              ) : (
+                <>
+                  <path d="M4 7h16" />
+                  <path d="M4 12h16" />
+                  <path d="M4 17h16" />
+                </>
+              )}
+            </svg>
+          </button>
         </div>
       </div>
 

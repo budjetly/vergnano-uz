@@ -45,3 +45,7 @@ next-env.d.ts
 
 # local dev tooling
 .claude/
+
+# Vercel marketplace installer artifacts
+.agents/
+skills-lock.json

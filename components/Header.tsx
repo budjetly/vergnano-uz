@@ -155,8 +155,9 @@ export default function Header({
               strokeLinecap="round"
               strokeLinejoin="round"
             >
-              <path d="M6 7h12l-1.2 12.2a1.8 1.8 0 0 1-1.8 1.8H9a1.8 1.8 0 0 1-1.8-1.8L6 7Z" />
-              <path d="M9 7V6a3 3 0 0 1 6 0v1" />
+              <path d="M3 4h2l2.4 11.2a1.5 1.5 0 0 0 1.5 1.2h8.6a1.5 1.5 0 0 0 1.5-1.2L21 8H6.2" />
+              <circle cx="9.5" cy="20" r="1.2" />
+              <circle cx="17" cy="20" r="1.2" />
             </svg>
             {count > 0 && (
               <span className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-brand-red px-1 text-[10px] font-bold text-white">

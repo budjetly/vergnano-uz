@@ -35,7 +35,7 @@ export default async function AboutPage({
       {/* Hero */}
       <section className="relative overflow-hidden bg-espresso text-cream">
         <Image
-          src="/images/story-family.jpg"
+          src="/images/famiglia-vergnano.webp"
           alt=""
           fill
           priority

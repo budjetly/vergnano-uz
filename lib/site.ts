@@ -1,11 +1,11 @@
 // Central place for company contact details.
-// TODO: replace the placeholder phone / email / telegram with real ones.
+// TODO: email and instagram are still placeholders — confirm real ones.
 export const site = {
   name: "Caffè Vergnano Uz",
-  phone: "+998 90 000 00 00",
-  phoneHref: "tel:+998900000000",
+  phone: "+998 91 796 77 55",
+  phoneHref: "tel:+998917967755",
   email: "info@vergnano.uz",
-  telegram: "caffevergnano_uz", // Telegram username without @
+  telegram: "caffevergnano1882uz", // Telegram username without @
   instagram: "caffevergnano.uz",
   address: {
     uz: "Toshkent, O'zbekiston",

@@ -65,9 +65,10 @@ export default function ContactForm({
       </div>
       <label className="block">
         <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-cocoa">
-          {dict.contact.email}
+          {dict.contact.email} *
         </span>
         <input
+          required
           type="email"
           value={form.email}
           onChange={(e) => setForm({ ...form, email: e.target.value })}

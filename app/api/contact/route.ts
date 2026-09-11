@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { sendTelegramMessage, escapeHtml } from "@/lib/telegram";
+import { sendContactEmail } from "@/lib/email";
 
 interface ContactPayload {
   name: string;
@@ -17,9 +18,12 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid JSON" }, { status: 400 });
   }
 
-  const { name, phone, message } = payload;
+  const { name, phone, email, message } = payload;
   if (!name?.trim() || !phone?.trim() || !message?.trim()) {
     return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
+  }
+  if (!email?.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+    return NextResponse.json({ error: "Invalid email" }, { status: 400 });
   }
 
   const lines = [
@@ -31,8 +35,18 @@ export async function POST(request: Request) {
   if (payload.email?.trim()) lines.push(`📧 ${escapeHtml(payload.email.trim())}`);
   lines.push("", escapeHtml(message.trim()), "", `🌐 ${payload.locale}`);
 
-  const ok = await sendTelegramMessage(lines.join("\n"));
-  if (!ok) {
+  const [tgOk, mailOk] = await Promise.all([
+    sendTelegramMessage(lines.join("\n")),
+    sendContactEmail({
+      name: name.trim(),
+      phone: phone.trim(),
+      email: email.trim(),
+      message: message.trim(),
+      locale: payload.locale,
+    }),
+  ]);
+  // Telegram is the primary channel; email is best-effort until configured
+  if (!tgOk && !mailOk) {
     return NextResponse.json({ error: "Failed to deliver message" }, { status: 502 });
   }
   return NextResponse.json({ ok: true });

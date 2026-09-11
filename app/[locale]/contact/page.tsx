@@ -26,12 +26,12 @@ export default async function ContactPage({
 
   const info = [
     { label: dict.contact.phoneLabel, value: site.phone, href: site.phoneHref },
-    { label: dict.contact.emailLabel, value: site.email, href: `mailto:${site.email}` },
     {
       label: dict.contact.telegramLabel,
       value: `@${site.telegram}`,
       href: `https://t.me/${site.telegram}`,
     },
+    { label: dict.contact.emailLabel, value: site.email, href: `mailto:${site.email}` },
     { label: dict.contact.addressLabel, value: site.address[locale] },
     { label: dict.contact.hoursLabel, value: dict.contact.hours },
   ];

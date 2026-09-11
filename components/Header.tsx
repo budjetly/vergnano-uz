@@ -63,10 +63,10 @@ export default function Header({
           <Image
             src="/images/logo-vergnano.png"
             alt="Caffè Vergnano 1882"
-            width={44}
-            height={44}
+            width={53}
+            height={53}
             priority
-            className="h-10 w-10 shrink-0 sm:h-11 sm:w-11"
+            className="h-12 w-12 shrink-0 sm:h-[53px] sm:w-[53px]"
           />
           <span className="hidden flex-col leading-none sm:flex">
             <span className="font-display text-lg font-bold tracking-wide xl:text-2xl">

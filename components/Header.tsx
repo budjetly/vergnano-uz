@@ -50,11 +50,6 @@ export default function Header({
           : "bg-paper"
       }`}
     >
-      <div className="border-b border-espresso/10">
-        <p className="mx-auto max-w-7xl px-4 py-1.5 text-center text-xs tracking-wide text-cocoa">
-          {dict.tagline}
-        </p>
-      </div>
       <div className="relative mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4">
         <Link
           href={`/${locale}`}

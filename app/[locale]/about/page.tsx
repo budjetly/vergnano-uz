@@ -40,7 +40,7 @@ export default async function AboutPage({
           fill
           priority
           sizes="100vw"
-          className="object-cover"
+          className="object-cover object-[50%_22%]"
         />
         <div className="absolute inset-0 bg-black/35" />
         <div className="relative mx-auto flex min-h-[50vh] max-w-7xl flex-col items-center justify-center px-4 py-24 text-center [text-shadow:0_2px_24px_rgba(0,0,0,0.5)]">

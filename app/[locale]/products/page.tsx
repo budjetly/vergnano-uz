@@ -1,6 +1,8 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getDictionary, isLocale } from "@/lib/i18n";
+import { collections, type Collection } from "@/lib/products";
+import CategoryCarousel from "@/components/CategoryCarousel";
 import ProductGrid from "@/components/ProductGrid";
 
 export async function generateMetadata({
@@ -24,23 +26,33 @@ export default async function ProductsPage({
   if (!isLocale(locale)) notFound();
   const dict = getDictionary(locale);
   const { category } = await searchParams;
+  const active: Collection | "all" = collections.includes(category as Collection)
+    ? (category as Collection)
+    : "all";
 
   return (
     <>
-      <section className="bg-espresso py-16 text-center text-cream">
-        <div className="mx-auto max-w-3xl px-4">
-          <h1 className="animate-fade-up font-display text-4xl font-bold sm:text-5xl">
-            {dict.products.title}
+      <section className="bg-paper pb-6 pt-16 text-center">
+        <div className="mx-auto max-w-4xl px-4">
+          <h1 className="animate-fade-up font-display text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">
+            {dict.products.heroLead}
+            <br />
+            <span className="italic font-normal">{dict.products.heroAccent}</span>
           </h1>
           <p
-            className="animate-fade-up mt-4 text-cream/75"
+            className="animate-fade-up mx-auto mt-6 max-w-2xl text-lg text-cocoa"
             style={{ animationDelay: "120ms" }}
           >
-            {dict.products.subtitle}
+            {dict.products.heroSubtitle}
           </p>
         </div>
       </section>
-      <ProductGrid locale={locale} dict={dict} initialCategory={category} />
+
+      <div className="bg-paper pb-10">
+        <CategoryCarousel locale={locale} dict={dict} active={active} />
+      </div>
+
+      <ProductGrid locale={locale} dict={dict} active={active} />
     </>
   );
 }

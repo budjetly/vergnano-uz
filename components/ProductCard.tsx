@@ -26,10 +26,10 @@ export default function ProductCard({
   }
 
   return (
-    <article className="group flex flex-col rounded-2xl bg-white p-5 shadow-[0_2px_16px_rgba(42,27,18,0.06)] transition-shadow hover:shadow-[0_8px_32px_rgba(42,27,18,0.12)]">
+    <article className="group flex flex-col rounded-2xl bg-white p-5 transition-shadow hover:shadow-[0_8px_32px_rgba(42,27,18,0.10)]">
       <Link
         href={`/${locale}/products/${product.id}`}
-        className="relative mx-auto block h-48 w-full"
+        className="relative mx-auto block h-56 w-full"
       >
         <Image
           src={product.image}
@@ -42,9 +42,11 @@ export default function ProductCard({
 
       <div className="mt-4 flex flex-1 flex-col">
         <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-cocoa">
-          {dict.products.categories[product.category]} · {product.packSize}
+          {product.collection
+            ? dict.products.collections[product.collection]
+            : dict.products.categories[product.category]}
         </p>
-        <h3 className="mt-1 font-display text-lg font-bold">
+        <h3 className="mt-1.5 text-lg font-medium">
           <Link
             href={`/${locale}/products/${product.id}`}
             className="transition-colors hover:text-brand-red"
@@ -75,6 +77,15 @@ export default function ProductCard({
         <p className="mt-2 flex-1 text-sm leading-relaxed text-cocoa">
           {product.description[locale]}
         </p>
+
+        <div className="mt-3 flex flex-wrap gap-1.5">
+          <span className="rounded-full bg-cream px-2.5 py-1 text-[11px] text-cocoa">
+            {product.packSize}
+          </span>
+          <span className="rounded-full bg-cream px-2.5 py-1 text-[11px] text-cocoa">
+            {dict.products.categories[product.category]}
+          </span>
+        </div>
 
         <div className="mt-4 flex items-center justify-between gap-3">
           <p className="font-display text-lg font-bold">

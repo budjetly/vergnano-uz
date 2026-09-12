@@ -1,7 +1,6 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getDictionary, isLocale } from "@/lib/i18n";
-import { collections, type Collection } from "@/lib/products";
 import CategoryCarousel from "@/components/CategoryCarousel";
 import ProductGrid from "@/components/ProductGrid";
 
@@ -17,18 +16,12 @@ export async function generateMetadata({
 
 export default async function ProductsPage({
   params,
-  searchParams,
 }: {
   params: Promise<{ locale: string }>;
-  searchParams: Promise<{ category?: string }>;
 }) {
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
   const dict = getDictionary(locale);
-  const { category } = await searchParams;
-  const active: Collection | "all" = collections.includes(category as Collection)
-    ? (category as Collection)
-    : "all";
 
   return (
     <>
@@ -47,12 +40,10 @@ export default async function ProductsPage({
           </p>
         </div>
       </section>
-
       <div className="bg-paper pb-10">
-        <CategoryCarousel locale={locale} dict={dict} active={active} />
+        <CategoryCarousel locale={locale} dict={dict} />
       </div>
-
-      <ProductGrid locale={locale} dict={dict} active={active} />
+      <ProductGrid locale={locale} dict={dict} />
     </>
   );
 }

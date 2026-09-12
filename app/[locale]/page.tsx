@@ -22,11 +22,11 @@ export default async function HomePage({
     products.find((p) => p.id === "caps-oro-50"),
   ].filter((p) => p !== undefined);
 
-  const categoryImages: { key: keyof typeof dict.products.categories; image: string }[] = [
-    { key: "beans", image: "/products/beans-granaroma.png" },
-    { key: "ground", image: "/products/ground-arabica-tin.png" },
-    { key: "capsules", image: "/products/caps-cremoso.png" },
-    { key: "pods", image: "/products/pods-oro-150.png" },
+  const categoryImages: { key: keyof typeof dict.products.categories; image: string; href: string }[] = [
+    { key: "beans", image: "/products/beans-granaroma.png", href: `/${locale}/caffe-in-grani` },
+    { key: "ground", image: "/products/ground-arabica-tin.png", href: `/${locale}/caffe-macinato` },
+    { key: "capsules", image: "/products/caps-cremoso.png", href: `/${locale}/products#catalog` },
+    { key: "pods", image: "/products/pods-oro-150.png", href: `/${locale}/products#catalog` },
   ];
 
   return (
@@ -105,10 +105,10 @@ export default async function HomePage({
           <p className="mt-3 text-cocoa">{dict.home.categoriesSubtitle}</p>
         </Reveal>
         <div className="mt-12 grid grid-cols-2 gap-4 lg:grid-cols-4">
-          {categoryImages.map(({ key, image }, i) => (
+          {categoryImages.map(({ key, image, href }, i) => (
             <Reveal key={key} delay={i * 100}>
               <Link
-                href={`/${locale}/products?category=${key}`}
+                href={href}
                 className="group flex flex-col items-center rounded-2xl bg-white p-8 shadow-[0_2px_16px_rgba(42,27,18,0.06)] transition-shadow hover:shadow-[0_8px_32px_rgba(42,27,18,0.12)]"
               >
                 <div className="relative h-36 w-full">

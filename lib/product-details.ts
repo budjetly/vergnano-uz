@@ -13,7 +13,9 @@ export type NoteKey =
   | "spices"
   | "tea"
   | "biscuit"
-  | "flowers";
+  | "flowers"
+  | "liquorice"
+  | "pastry";
 
 export type Roast = "medium" | "dark";
 
@@ -26,6 +28,30 @@ export interface ProductDetail {
 }
 
 export const productDetails: Record<string, ProductDetail> = {
+  "rt-nobile": {
+    subtitle: { uz: "Yumshoq va muvozanatli", ru: "Мягкий и сбалансированный", en: "Smooth & balanced" },
+    blend: "Arabica + Robusta", body: 7, roast: "medium", notes: ["cocoa", "pastry", "caramel"],
+  },
+  "rt-arabica": {
+    subtitle: { uz: "Nozik va xushbo'y", ru: "Деликатный и ароматный", en: "Delicate & aromatic" },
+    blend: "100% Arabica", body: 5, roast: "medium", notes: ["milkChocolate", "caramel", "liquorice", "nuts"],
+  },
+  "rt-cremoso": {
+    subtitle: { uz: "Kuchli va to'liq tanali", ru: "Интенсивный и полнотелый", en: "Intense & full-bodied" },
+    blend: "Arabica + Robusta", body: 9, roast: "dark", notes: ["cocoa", "spices", "nuts"],
+  },
+  "rt-caps-nobile": {
+    subtitle: { uz: "Yumshoq va muvozanatli", ru: "Мягкий и сбалансированный", en: "Smooth & balanced" },
+    blend: "Arabica + Robusta", body: 7, roast: "medium", notes: ["cocoa", "pastry", "caramel"],
+  },
+  "rt-caps-arabica": {
+    subtitle: { uz: "Nozik va xushbo'y", ru: "Деликатный и ароматный", en: "Delicate & aromatic" },
+    blend: "100% Arabica", body: 5, roast: "medium", notes: ["milkChocolate", "caramel", "liquorice", "nuts"],
+  },
+  "rt-caps-cremoso": {
+    subtitle: { uz: "Kuchli va to'liq tanali", ru: "Интенсивный и полнотелый", en: "Intense & full-bodied" },
+    blend: "Arabica + Robusta", body: 9, roast: "dark", notes: ["cocoa", "spices", "nuts"],
+  },
   "beans-antica-bottega": {
     subtitle: { uz: "Shirin va nafis", ru: "Сладкий и изысканный", en: "Sweet and refined" },
     blend: "Arabica + Robusta",

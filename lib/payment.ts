@@ -3,8 +3,8 @@
 // list two cards if you use separate ones.
 export const paymentCards = [
   {
-    label: "Payme / Click",
+    label: "Payme / Click / Uzum / Paynet",
     number: "5614 6831 0095 0336",
-    holder: "CAFFE VERGNANO UZ",
+    holder: "Abduvasilov Orifjon",
   },
 ] as const;

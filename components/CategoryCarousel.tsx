@@ -19,26 +19,27 @@ export default function CategoryCarousel({
   const t = dict.products;
   const sets = [0, 1, 2];
 
+  // Keep the scroll position inside the middle copy. Detection is done with
+  // an IntersectionObserver (fires for any scroll source: swipe, wheel,
+  // arrows) so it does not depend on scroll events.
   useEffect(() => {
     const el = track.current;
     if (!el) return;
     const setWidth = () => el.scrollWidth / 3;
     el.scrollLeft = setWidth();
 
-    let timer: number | undefined;
-    const onScroll = () => {
-      window.clearTimeout(timer);
-      // re-centre only once scrolling has settled so the jump is invisible
-      timer = window.setTimeout(() => {
-        const w = setWidth();
-        if (el.scrollLeft < w * 0.5) el.scrollLeft += w;
-        else if (el.scrollLeft > w * 1.5 + (w - el.clientWidth) * 0.5) el.scrollLeft -= w;
-      }, 120);
+    const recenter = () => {
+      const w = setWidth();
+      const x = el.scrollLeft;
+      if (x < w * 0.5) el.scrollLeft = x + w;
+      else if (x > w * 2.5 - el.clientWidth) el.scrollLeft = x - w;
     };
-    el.addEventListener("scroll", onScroll, { passive: true });
+    const io = new IntersectionObserver(recenter, { root: el, threshold: 0 });
+    el.querySelectorAll<HTMLElement>("[data-card]").forEach((c) => io.observe(c));
+    el.addEventListener("scrollend", recenter);
     return () => {
-      el.removeEventListener("scroll", onScroll);
-      window.clearTimeout(timer);
+      io.disconnect();
+      el.removeEventListener("scrollend", recenter);
     };
   }, []);
 
@@ -46,7 +47,14 @@ export default function CategoryCarousel({
     const el = track.current;
     if (!el) return;
     const card = el.querySelector<HTMLElement>("[data-card]");
-    el.scrollBy({ left: dir * ((card?.offsetWidth ?? 360) + 16), behavior: "smooth" });
+    const delta = dir * ((card?.offsetWidth ?? 360) + 16);
+    // jump a full set before animating so the animation itself never crosses
+    // the wrap point
+    const w = el.scrollWidth / 3;
+    const target = el.scrollLeft + delta;
+    if (target < w * 0.5) el.scrollLeft += w;
+    else if (target > w * 2.5 - el.clientWidth) el.scrollLeft -= w;
+    el.scrollBy({ left: delta, behavior: "smooth" });
   };
 
   return (

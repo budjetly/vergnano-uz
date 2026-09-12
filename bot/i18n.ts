@@ -43,7 +43,7 @@ const uz: BotDict = {
   cancelled: "Buyurtma bekor qilindi. Yana kutamiz! ☕️",
   payTitle: "💳 <b>To'lov ma'lumotlari</b>",
   payInstructions: (orderId, total) =>
-    `Buyurtma raqami: <b>${orderId}</b>\nTo'lov summasi: <b>${total} so'm</b>\n\nQuyidagi kartaga <b>Payme</b>, <b>Click</b>, <b>Uzum</b> yoki <b>Paynet</b> orqali o'tkazma qiling:`,
+    `Buyurtma raqami: <b>${orderId}</b>\nTo'lov summasi: <b>${total} so'm</b>`,
   cardLine: (label, number, holder) => `<b>${label}</b>\n<code>${number}</code>\n${holder}`,
   afterPay:
     "✅ To'lovni amalga oshirgach, <b>to'lov chekini (skrinshot)</b> shu yerga yuboring — buyurtmangiz shundan so'ng qabul qilinadi.\n\n💡 Karta raqamiga bosib nusxalash mumkin.",
@@ -76,7 +76,7 @@ const ru: BotDict = {
   cancelled: "Заказ отменён. Будем ждать вас снова! ☕️",
   payTitle: "💳 <b>Реквизиты для оплаты</b>",
   payInstructions: (orderId, total) =>
-    `Номер заказа: <b>${orderId}</b>\nСумма к оплате: <b>${total} сум</b>\n\nПереведите сумму на карту через <b>Payme</b>, <b>Click</b>, <b>Uzum</b> или <b>Paynet</b>:`,
+    `Номер заказа: <b>${orderId}</b>\nСумма к оплате: <b>${total} сум</b>`,
   cardLine: (label, number, holder) => `<b>${label}</b>\n<code>${number}</code>\n${holder}`,
   afterPay:
     "✅ После оплаты отправьте сюда <b>скриншот чека</b> — заказ будет принят после этого.\n\n💡 Нажмите на номер карты, чтобы скопировать.",
@@ -108,7 +108,7 @@ const en: BotDict = {
   cancelled: "Order cancelled. Hope to see you again! ☕️",
   payTitle: "💳 <b>Payment details</b>",
   payInstructions: (orderId, total) =>
-    `Order number: <b>${orderId}</b>\nAmount due: <b>${total} UZS</b>\n\nTransfer the amount to this card via <b>Payme</b>, <b>Click</b>, <b>Uzum</b> or <b>Paynet</b>:`,
+    `Order number: <b>${orderId}</b>\nAmount due: <b>${total} UZS</b>`,
   cardLine: (label, number, holder) => `<b>${label}</b>\n<code>${number}</code>\n${holder}`,
   afterPay:
     "✅ After paying, send the <b>payment confirmation screenshot</b> here — your order is secured once we receive it.\n\n💡 Tap the card number to copy it.",

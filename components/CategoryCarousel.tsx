@@ -37,9 +37,12 @@ export default function CategoryCarousel({
     const io = new IntersectionObserver(recenter, { root: el, threshold: 0 });
     el.querySelectorAll<HTMLElement>("[data-card]").forEach((c) => io.observe(c));
     el.addEventListener("scrollend", recenter);
+    // cheap safety net for browsers that throttle observers (two reads, 4×/s)
+    const tick = window.setInterval(recenter, 250);
     return () => {
       io.disconnect();
       el.removeEventListener("scrollend", recenter);
+      window.clearInterval(tick);
     };
   }, []);
 

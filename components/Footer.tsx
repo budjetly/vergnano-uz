@@ -32,7 +32,9 @@ export default function Footer({
               className="h-12 w-12 shrink-0"
             />
             <div className="leading-none">
-              <p className="font-display text-2xl font-bold">Caffè Vergnano 1882</p>
+              <p className="font-display text-2xl font-bold">
+                Caffè Vergnano <span className="text-brand-red">1882</span>
+              </p>
               <p className="mt-1 text-[10px] font-medium uppercase tracking-[0.35em] text-tan">
                 Uzbekistan
               </p>

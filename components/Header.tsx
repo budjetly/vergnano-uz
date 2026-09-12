@@ -65,7 +65,7 @@ export default function Header({
           />
           <span className="hidden flex-col leading-none sm:flex">
             <span className="font-display text-lg font-bold tracking-wide xl:text-2xl">
-              Caffè Vergnano 1882
+              Caffè Vergnano <span className="text-brand-red">1882</span>
             </span>
             <span className="text-[10px] font-medium uppercase tracking-[0.35em] text-brand-red">
               Uzbekistan

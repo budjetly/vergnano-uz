@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect } from "react";
 import { products, collections, type Collection } from "@/lib/products";
 import ProductCard from "./ProductCard";
 import type { Locale, Dictionary } from "@/lib/i18n";
@@ -15,6 +16,15 @@ export default function ProductGrid({
   active: Collection | "all";
 }) {
   const t = dict.products;
+
+  // Category cards and chips navigate to ?category=…#catalog with
+  // scroll={false}; bring the grid into view ourselves.
+  useEffect(() => {
+    if (window.location.hash === "#catalog") {
+      document.getElementById("catalog")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, [active]);
+
   const filtered =
     active === "all" ? products : products.filter((p) => p.collection === active);
   const chips: (Collection | "all")[] = [...collections, "all"];

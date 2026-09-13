@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { sendTelegramMessage, escapeHtml } from "@/lib/telegram";
 import { products } from "@/lib/products";
 import { generateOrderId, saveOrder, type Order, type OrderItem } from "@/lib/orders";
+import { formatPhone, isValidPhone } from "@/lib/phone";
 
 interface OrderPayloadItem {
   id: string;
@@ -29,6 +30,9 @@ export async function POST(request: Request) {
   if (!name?.trim() || !phone?.trim() || !Array.isArray(items) || items.length === 0) {
     return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
   }
+  if (!isValidPhone(phone)) {
+    return NextResponse.json({ error: "Invalid phone" }, { status: 400 });
+  }
 
   // Resolve items on the server so prices can't be tampered with client-side
   const resolved: OrderItem[] = [];
@@ -55,7 +59,7 @@ export async function POST(request: Request) {
     status: "awaiting_confirmation",
     locale: payload.locale || "uz",
     name: name.trim(),
-    phone: phone.trim(),
+    phone: formatPhone(phone),
     company: payload.company?.trim() || undefined,
     comment: payload.comment?.trim() || undefined,
     items: resolved,

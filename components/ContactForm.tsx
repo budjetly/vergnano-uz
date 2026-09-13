@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { Locale, Dictionary } from "@/lib/i18n";
+import { formatPhone, isValidPhone } from "@/lib/phone";
 
 type Status = "idle" | "sending" | "success" | "error";
 
@@ -22,7 +23,7 @@ export default function ContactForm({
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, locale }),
+        body: JSON.stringify({ ...form, phone: formatPhone(form.phone), locale }),
       });
       if (!res.ok) throw new Error("failed");
       setStatus("success");
@@ -56,9 +57,13 @@ export default function ContactForm({
           <input
             required
             type="tel"
-            placeholder="+998 __ ___ __ __"
+            inputMode="numeric"
+            placeholder="+998 99 123 45 67"
             value={form.phone}
-            onChange={(e) => setForm({ ...form, phone: e.target.value })}
+            onChange={(e) => setForm({ ...form, phone: formatPhone(e.target.value) })}
+            onInvalid={(e) => e.currentTarget.setCustomValidity(isValidPhone(form.phone) ? "" : "+998 99 123 45 67")}
+            onInput={(e) => e.currentTarget.setCustomValidity("")}
+            pattern="\+998 \d{2} \d{3} \d{2} \d{2}"
             className={inputClass}
           />
         </label>

@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useCart } from "@/lib/cart";
 import { formatPrice } from "@/lib/products";
+import { formatPhone, isValidPhone } from "@/lib/phone";
 import type { Locale, Dictionary } from "@/lib/i18n";
 
 type Step = "cart" | "form" | "success" | "error";
@@ -41,6 +42,7 @@ export default function CartDrawer({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...form,
+          phone: formatPhone(form.phone),
           locale,
           items: resolved.map(({ product, qty }) => ({ id: product.id, qty })),
         }),
@@ -181,9 +183,13 @@ export default function CartDrawer({
                 <input
                   required
                   type="tel"
-                  placeholder="+998 __ ___ __ __"
+                  inputMode="numeric"
+                  placeholder="+998 99 123 45 67"
                   value={form.phone}
-                  onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                  onChange={(e) => setForm({ ...form, phone: formatPhone(e.target.value) })}
+                  onInvalid={(e) => e.currentTarget.setCustomValidity(isValidPhone(form.phone) ? "" : "+998 99 123 45 67")}
+                  onInput={(e) => e.currentTarget.setCustomValidity("")}
+                  pattern="\+998 \d{2} \d{3} \d{2} \d{2}"
                   className="w-full rounded-xl border border-espresso/15 bg-white px-4 py-3 text-sm outline-none transition-colors focus:border-espresso"
                 />
               </label>

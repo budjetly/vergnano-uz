@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { sendTelegramMessage, escapeHtml } from "@/lib/telegram";
 import { sendContactEmail } from "@/lib/email";
+import { formatPhone, isValidPhone } from "@/lib/phone";
 
 interface ContactPayload {
   name: string;
@@ -25,12 +26,16 @@ export async function POST(request: Request) {
   if (!email?.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
     return NextResponse.json({ error: "Invalid email" }, { status: 400 });
   }
+  if (!isValidPhone(phone)) {
+    return NextResponse.json({ error: "Invalid phone" }, { status: 400 });
+  }
+  const phoneFmt = formatPhone(phone);
 
   const lines = [
     "✉️ <b>Yangi xabar / Новое сообщение</b>",
     "",
     `👤 <b>${escapeHtml(name.trim())}</b>`,
-    `📞 ${escapeHtml(phone.trim())}`,
+    `📞 ${escapeHtml(phoneFmt)}`,
   ];
   if (payload.email?.trim()) lines.push(`📧 ${escapeHtml(payload.email.trim())}`);
   lines.push("", escapeHtml(message.trim()), "", `🌐 ${payload.locale}`);
@@ -39,7 +44,7 @@ export async function POST(request: Request) {
     sendTelegramMessage(lines.join("\n")),
     sendContactEmail({
       name: name.trim(),
-      phone: phone.trim(),
+      phone: phoneFmt,
       email: email.trim(),
       message: message.trim(),
       locale: payload.locale,

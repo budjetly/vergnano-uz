@@ -3,7 +3,7 @@
 export const site = {
   name: "Caffè Vergnano Uz",
   phone: "+998 91 796 77 55",
-  phoneHref: "tel:+998917967755",
+  phoneHref: "tel:+998917967755", // keep in sync with `phone`
   email: "info@vergnano.uz",
   telegram: "caffevergnano1882uz", // Telegram username without @
   instagram: "caffevergnano.uz",

@@ -153,3 +153,48 @@ export async function setChatLocale(chatId: number, locale: string): Promise<voi
 export async function getChatLocale(chatId: number): Promise<string | null> {
   return getStore().get(`lang:${chatId}`);
 }
+
+// ---------------------------------------------------------------------------
+// In-bot shopping: a cart per chat and a small checkout state machine.
+// ---------------------------------------------------------------------------
+
+export interface BotCartItem {
+  productId: string;
+  qty: number;
+}
+
+export async function getBotCart(chatId: number): Promise<BotCartItem[]> {
+  const raw = await getStore().get(`cart:${chatId}`);
+  if (!raw) return [];
+  try {
+    const parsed = JSON.parse(raw) as BotCartItem[];
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
+}
+
+export async function setBotCart(chatId: number, items: BotCartItem[]): Promise<void> {
+  if (items.length === 0) await getStore().del(`cart:${chatId}`);
+  else await getStore().set(`cart:${chatId}`, JSON.stringify(items));
+}
+
+export interface ChatState {
+  step: "name" | "phone";
+  name?: string;
+}
+
+export async function getChatState(chatId: number): Promise<ChatState | null> {
+  const raw = await getStore().get(`state:${chatId}`);
+  if (!raw) return null;
+  try {
+    return JSON.parse(raw) as ChatState;
+  } catch {
+    return null;
+  }
+}
+
+export async function setChatState(chatId: number, state: ChatState | null): Promise<void> {
+  if (!state) await getStore().del(`state:${chatId}`);
+  else await getStore().set(`state:${chatId}`, JSON.stringify(state));
+}

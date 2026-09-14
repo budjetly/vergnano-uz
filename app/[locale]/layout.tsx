@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Playfair_Display, Jost } from "next/font/google";
 import { locales, isLocale, getDictionary } from "@/lib/i18n";
+import { SITE_URL, siteName, defaultSeo, pageMeta, organizationJsonLd, jsonLd } from "@/lib/seo";
 import { CartProvider } from "@/lib/cart";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -23,59 +24,31 @@ export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
 
-const SITE_URL = "https://caffevergnano1882.uz";
-
-const seo: Record<string, { title: string; description: string; ogLocale: string }> = {
-  uz: {
-    title: "Caffè Vergnano Uz — 1882-yildan beri Italiya qahva an'anasi",
-    description:
-      "Caffè Vergnano 1882 (Turin, Italiya) brendining O'zbekistondagi rasmiy importchisi va distribyutori. Donali va maydalangan qahva, kapsulalar, chaldalar — kafe, restoran, ofis va uy uchun.",
-    ogLocale: "uz_UZ",
-  },
-  ru: {
-    title: "Caffè Vergnano Uz — итальянская кофейная традиция с 1882 года",
-    description:
-      "Официальный импортёр и дистрибьютор Caffè Vergnano 1882 (Турин, Италия) в Узбекистане. Зерновой и молотый кофе, капсулы, чалды — для кафе, ресторанов, офисов и дома.",
-    ogLocale: "ru_RU",
-  },
-  en: {
-    title: "Caffè Vergnano Uz — Italian coffee tradition since 1882",
-    description:
-      "Official importer and distributor of Caffè Vergnano 1882 (Turin, Italy) in Uzbekistan. Whole beans, ground coffee, capsules and pods — for cafés, restaurants, offices and home.",
-    ogLocale: "en_US",
-  },
-};
-
 export async function generateMetadata({
   params,
 }: {
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const t = seo[locale] ?? seo.uz;
+  const l = isLocale(locale) ? locale : "uz";
+  const t = defaultSeo[l];
   return {
     metadataBase: new URL(SITE_URL),
-    title: { default: t.title, template: "%s | Caffè Vergnano Uz" },
-    description: t.description,
-    alternates: {
-      canonical: `/${locale}`,
-      languages: { uz: "/uz", ru: "/ru", en: "/en" },
+    applicationName: siteName[l],
+    keywords: t.keywords,
+    authors: [{ name: siteName[l], url: SITE_URL }],
+    creator: siteName[l],
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 },
     },
-    openGraph: {
-      type: "website",
-      siteName: "Caffè Vergnano Uz",
-      title: t.title,
-      description: t.description,
-      url: `/${locale}`,
-      locale: t.ogLocale,
-      images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Caffè Vergnano Uz" }],
+    verification: {
+      google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || undefined,
+      yandex: process.env.NEXT_PUBLIC_YANDEX_VERIFICATION || undefined,
     },
-    twitter: {
-      card: "summary_large_image",
-      title: t.title,
-      description: t.description,
-      images: ["/og.jpg"],
-    },
+    ...pageMeta(l, { title: t.title, description: t.description, path: "" }),
+    title: { default: t.title, template: `%s | ${siteName[l]}` },
   };
 }
 
@@ -93,6 +66,10 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} className={`${playfair.variable} ${jost.variable}`}>
       <body className="antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: jsonLd(organizationJsonLd(locale)) }}
+        />
         <CartProvider>
           <Header locale={locale} dict={dict} />
           <main>{children}</main>

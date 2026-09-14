@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getDictionary, isLocale } from "@/lib/i18n";
+import { pageMeta, breadcrumbJsonLd, jsonLd, siteName } from "@/lib/seo";
 import { products, collections, collectionImages, type Collection, type Product } from "@/lib/products";
 import { productDetails } from "@/lib/product-details";
 import { lineContent } from "@/lib/lines";
@@ -23,8 +24,15 @@ export async function generateMetadata({
   params: Promise<{ locale: string; collection: string }>;
 }): Promise<Metadata> {
   const { locale, collection } = await params;
-  const dict = getDictionary(locale);
-  return { title: isCollection(collection) ? dict.products.collections[collection] : "Caffè Vergnano" };
+  const l = isLocale(locale) ? locale : "uz";
+  if (!isCollection(collection)) return { title: "Caffè Vergnano" };
+  const dict = getDictionary(l);
+  const name = dict.products.collections[collection];
+  const content = lineContent[collection];
+  const count = products.filter((p) => p.collection === collection).length;
+  const title = `${name} — Caffè Vergnano`;
+  const description = `${content?.tagline[l] ?? name}. ${content?.intro[0]?.[l] ?? ""} ${count} ${dict.products.items}. ${siteName[l]}.`.replace(/\s+/g, " ").trim();
+  return pageMeta(l, { title, description, path: `/${collection}`, image: collectionImages[collection] });
 }
 
 export default async function LinePage({
@@ -112,6 +120,18 @@ export default async function LinePage({
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: jsonLd(
+            breadcrumbJsonLd([
+              { name: dict.nav.home, url: `/${locale}` },
+              { name: dict.nav.products, url: `/${locale}/products` },
+              { name: title, url: `/${locale}/${collection}` },
+            ])
+          ),
+        }}
+      />
       {/* Hero */}
       <section className="relative overflow-hidden bg-espresso text-cream">
         {content?.heroVideo ? (

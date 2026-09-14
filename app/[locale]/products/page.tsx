@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getDictionary, isLocale } from "@/lib/i18n";
+import { pageMeta } from "@/lib/seo";
 import CategoryCarousel from "@/components/CategoryCarousel";
 import ProductGrid from "@/components/ProductGrid";
 
@@ -10,8 +11,9 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const dict = getDictionary(locale);
-  return { title: dict.products.title };
+  const l = isLocale(locale) ? locale : "uz";
+  const dict = getDictionary(l);
+  return pageMeta(l, { title: `${dict.products.title} — Caffè Vergnano`, description: `${dict.products.heroLead} ${dict.products.heroAccent}. ${dict.products.heroSubtitle} ${dict.products.subtitle}.`, path: "/products" });
 }
 
 export default async function ProductsPage({

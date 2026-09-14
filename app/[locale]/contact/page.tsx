@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getDictionary, isLocale } from "@/lib/i18n";
+import { pageMeta } from "@/lib/seo";
 import { site } from "@/lib/site";
 import ContactForm from "@/components/ContactForm";
 import Reveal from "@/components/Reveal";
@@ -11,8 +12,9 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const dict = getDictionary(locale);
-  return { title: dict.contact.title };
+  const l = isLocale(locale) ? locale : "uz";
+  const dict = getDictionary(l);
+  return pageMeta(l, { title: `${dict.contact.title} — Caffè Vergnano`, description: `${dict.contact.subtitle} ${dict.contact.b2bText}`, path: "/contact" });
 }
 
 export default async function ContactPage({

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getDictionary, isLocale } from "@/lib/i18n";
+import { pageMeta } from "@/lib/seo";
 import Reveal from "@/components/Reveal";
 
 export async function generateMetadata({
@@ -11,8 +12,9 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const dict = getDictionary(locale);
-  return { title: dict.about.title };
+  const l = isLocale(locale) ? locale : "uz";
+  const dict = getDictionary(l);
+  return pageMeta(l, { title: `${dict.about.title} — Caffè Vergnano 1882`, description: `${dict.about.heroTitle}. ${dict.about.p2}`, path: "/about" });
 }
 
 export default async function AboutPage({

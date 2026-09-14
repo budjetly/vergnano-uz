@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getDictionary, isLocale } from "@/lib/i18n";
+import { pageMeta, productJsonLd, breadcrumbJsonLd, jsonLd, siteName } from "@/lib/seo";
 import { products } from "@/lib/products";
 import { productDetails } from "@/lib/product-details";
 import ProductBuyBox from "@/components/ProductBuyBox";
@@ -18,9 +19,16 @@ export async function generateMetadata({
 }: {
   params: Promise<{ locale: string; id: string }>;
 }): Promise<Metadata> {
-  const { id } = await params;
+  const { locale, id } = await params;
+  const l = isLocale(locale) ? locale : "uz";
   const product = products.find((p) => p.id === id);
-  return { title: product ? product.name : "Product" };
+  if (!product) return { title: "Product" };
+  const dict = getDictionary(l);
+  const line = product.collection ? dict.products.collections[product.collection] : dict.products.categories[product.category];
+  const price = `${new Intl.NumberFormat("ru-RU").format(product.price)} ${dict.currency}`;
+  const title = `${product.name} — ${line} · ${product.packSize}`;
+  const description = `${product.description[l]} ${price}. ${siteName[l]} — ${dict.footer.officialNote}.`;
+  return pageMeta(l, { title, description, path: `/products/${product.id}`, image: product.image });
 }
 
 function Meter({ label, value }: { label: string; value: number }) {
@@ -78,8 +86,25 @@ export default async function ProductPage({
     });
   facts.push({ label: t.packSize, value: product.packSize });
 
+  const lineName = product.collection ? dict.products.collections[product.collection] : null;
+  const crumbs = [
+    { name: dict.nav.home, url: `/${locale}` },
+    { name: dict.nav.products, url: `/${locale}/products` },
+    ...(product.collection ? [{ name: lineName as string, url: `/${locale}/${product.collection}` }] : []),
+    { name: product.name, url: `/${locale}/products/${product.id}` },
+  ];
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: jsonLd([
+            productJsonLd(locale, { ...product, description: product.description[locale] }, lineName),
+            breadcrumbJsonLd(crumbs),
+          ]),
+        }}
+      />
       {/* Breadcrumb */}
       <nav className="mx-auto max-w-7xl px-4 pt-6 text-sm text-cocoa">
         <Link href={`/${locale}`} className="hover:text-espresso">
@@ -91,10 +116,10 @@ export default async function ProductPage({
         </Link>
         <span className="mx-2">›</span>
         <Link
-          href={`/${locale}/products?category=${product.category}`}
+          href={product.collection ? `/${locale}/${product.collection}` : `/${locale}/products`}
           className="hover:text-espresso"
         >
-          {dict.products.categories[product.category]}
+          {lineName ?? dict.products.categories[product.category]}
         </Link>
         <span className="mx-2">›</span>
         <span className="text-espresso">{product.name}</span>

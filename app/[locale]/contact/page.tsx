@@ -14,7 +14,7 @@ export async function generateMetadata({
   const { locale } = await params;
   const l = isLocale(locale) ? locale : "uz";
   const dict = getDictionary(l);
-  return pageMeta(l, { title: `${dict.contact.title} — Caffè Vergnano`, description: `${dict.contact.subtitle} ${dict.contact.b2bText}`, path: "/contact" });
+  return pageMeta(l, { title: `${dict.contact.title}`, description: `${dict.contact.subtitle} ${dict.contact.b2bText}`, path: "/contact" });
 }
 
 export default async function ContactPage({

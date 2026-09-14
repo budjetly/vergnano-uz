@@ -13,7 +13,7 @@ export async function generateMetadata({
   const { locale } = await params;
   const l = isLocale(locale) ? locale : "uz";
   const dict = getDictionary(l);
-  return pageMeta(l, { title: `${dict.products.title} — Caffè Vergnano`, description: `${dict.products.heroLead} ${dict.products.heroAccent}. ${dict.products.heroSubtitle} ${dict.products.subtitle}.`, path: "/products" });
+  return pageMeta(l, { title: `${dict.products.title} — Caffè Vergnano 1882`, description: `${dict.products.heroLead} ${dict.products.heroAccent}. ${dict.products.heroSubtitle} ${dict.products.subtitle}.`, path: "/products" });
 }
 
 export default async function ProductsPage({

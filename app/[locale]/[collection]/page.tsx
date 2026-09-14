@@ -30,7 +30,7 @@ export async function generateMetadata({
   const name = dict.products.collections[collection];
   const content = lineContent[collection];
   const count = products.filter((p) => p.collection === collection).length;
-  const title = `${name} — Caffè Vergnano`;
+  const title = name;
   const description = `${content?.tagline[l] ?? name}. ${content?.intro[0]?.[l] ?? ""} ${count} ${dict.products.items}. ${siteName[l]}.`.replace(/\s+/g, " ").trim();
   return pageMeta(l, { title, description, path: `/${collection}`, image: collectionImages[collection] });
 }

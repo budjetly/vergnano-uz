@@ -14,7 +14,7 @@ export async function generateMetadata({
   const { locale } = await params;
   const l = isLocale(locale) ? locale : "uz";
   const dict = getDictionary(l);
-  return pageMeta(l, { title: `${dict.about.title} — Caffè Vergnano 1882`, description: `${dict.about.heroTitle}. ${dict.about.p2}`, path: "/about" });
+  return pageMeta(l, { title: `${dict.about.title} — Caffè Vergnano 1882 ${dict.contact.address.split(',')[0]}`, description: `${dict.about.heroTitle}. ${dict.about.p2}`, path: "/about" });
 }
 
 export default async function AboutPage({

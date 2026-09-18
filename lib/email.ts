@@ -7,10 +7,8 @@
 //   CONTACT_EMAIL_FROM optional; defaults to Resend's onboarding sender until
 //                      caffevergnano1882.uz is verified in Resend
 //
-// Without RESEND_API_KEY the message is relayed through FormSubmit
-// (https://formsubmit.co — no account or key; the inbox owner activates the
-// address once via an emailed link). Without CONTACT_EMAIL_TO this is a no-op
-// and the message still reaches the Telegram group.
+// Until RESEND_API_KEY / CONTACT_EMAIL_TO are set, this is a no-op and the
+// message still reaches the Telegram group.
 
 export interface ContactEmail {
   name: string;
@@ -23,43 +21,10 @@ export interface ContactEmail {
 const esc = (s: string) =>
   s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
-async function sendViaFormSubmit(to: string, c: ContactEmail): Promise<boolean> {
-  try {
-    const res = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(to)}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        Origin: "https://caffevergnano1882.uz",
-        Referer: "https://caffevergnano1882.uz/contact",
-      },
-      body: JSON.stringify({
-        _subject: `Saytdan xabar: ${c.name} (${c.phone})`,
-        _replyto: c.email,
-        _template: "table",
-        _captcha: "false",
-        "Ism / Имя": c.name,
-        Telefon: c.phone,
-        Email: c.email,
-        "Til / Язык": c.locale,
-        "Xabar / Сообщение": c.message,
-      }),
-    });
-    const data = (await res.json().catch(() => null)) as { success?: string | boolean } | null;
-    const ok = res.ok && String(data?.success) === "true";
-    if (!ok) console.error("[email] FormSubmit error", res.status, data);
-    return ok;
-  } catch (err) {
-    console.error("[email] FormSubmit failed", err);
-    return false;
-  }
-}
-
 export async function sendContactEmail(c: ContactEmail): Promise<boolean> {
   const key = process.env.RESEND_API_KEY;
   const to = process.env.CONTACT_EMAIL_TO;
-  if (!to) return false;
-  if (!key) return sendViaFormSubmit(to, c);
+  if (!key || !to) return false;
 
   const from =
     process.env.CONTACT_EMAIL_FROM || "Caffè Vergnano Uz <onboarding@resend.dev>";

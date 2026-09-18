@@ -33,6 +33,11 @@ export default async function ContactPage({
       value: `@${site.telegram}`,
       href: `https://t.me/${site.telegram}`,
     },
+    {
+      label: "Instagram",
+      value: `@${site.instagram}`,
+      href: `https://instagram.com/${site.instagram}`,
+    },
     { label: dict.contact.emailLabel, value: site.email, href: `mailto:${site.email}` },
     { label: dict.contact.addressLabel, value: site.address[locale] },
     { label: dict.contact.hoursLabel, value: dict.contact.hours },

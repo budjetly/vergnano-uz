@@ -83,6 +83,16 @@ export default function Footer({
             </li>
             <li>
               <a
+                href={`https://instagram.com/${site.instagram}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-colors hover:text-cream"
+              >
+                Instagram: @{site.instagram}
+              </a>
+            </li>
+            <li>
+              <a
                 href={`mailto:${site.email}`}
                 className="transition-colors hover:text-cream"
               >

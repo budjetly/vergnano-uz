@@ -30,76 +30,55 @@ export interface ProductDetail {
 export const productDetails: Record<string, ProductDetail> = {
   "rt-nobile": {
     subtitle: { uz: "Yumshoq va muvozanatli", ru: "Мягкий и сбалансированный", en: "Smooth & balanced" },
-    blend: "Arabica + Robusta", body: 7, roast: "medium", notes: ["cocoa", "pastry", "caramel"],
+    blend: "Arabica + Robusta", body: 7, roast: "medium", notes: ["cocoa", "pastry", "biscuit", "caramel"],
   },
   "rt-arabica": {
     subtitle: { uz: "Nozik va xushbo'y", ru: "Деликатный и ароматный", en: "Delicate & aromatic" },
-    blend: "100% Arabica", body: 5, roast: "medium", notes: ["milkChocolate", "caramel", "liquorice", "nuts"],
+    blend: "100% Arabica", body: 5, roast: "medium", notes: ["biscuit", "chocolate", "nuts", "vanilla"],
   },
   "rt-cremoso": {
     subtitle: { uz: "Kuchli va to'liq tanali", ru: "Интенсивный и полнотелый", en: "Intense & full-bodied" },
-    blend: "Arabica + Robusta", body: 9, roast: "dark", notes: ["cocoa", "spices", "nuts"],
+    blend: "Arabica + Robusta", body: 8, roast: "medium", notes: ["nuts", "spices", "liquorice", "biscuit"],
   },
   "rt-caps-nobile": {
     subtitle: { uz: "Yumshoq va muvozanatli", ru: "Мягкий и сбалансированный", en: "Smooth & balanced" },
-    blend: "Arabica + Robusta", body: 7, roast: "medium", notes: ["cocoa", "pastry", "caramel"],
+    blend: "Arabica + Robusta", body: 7, roast: "medium", notes: ["milkChocolate", "caramel", "nuts", "yellowFruit"],
   },
   "rt-caps-arabica": {
     subtitle: { uz: "Nozik va xushbo'y", ru: "Деликатный и ароматный", en: "Delicate & aromatic" },
-    blend: "100% Arabica", body: 5, roast: "medium", notes: ["milkChocolate", "caramel", "liquorice", "nuts"],
+    blend: "100% Arabica", body: 5, roast: "medium", notes: ["milkChocolate", "caramel", "citrus", "yellowFruit"],
   },
   "rt-caps-cremoso": {
     subtitle: { uz: "Kuchli va to'liq tanali", ru: "Интенсивный и полнотелый", en: "Intense & full-bodied" },
-    blend: "Arabica + Robusta", body: 9, roast: "dark", notes: ["cocoa", "spices", "nuts"],
+    blend: "Arabica + Robusta", body: 9, roast: "medium", notes: ["cocoa", "nuts", "biscuit"],
   },
   "beans-antica-bottega": {
     subtitle: { uz: "Shirin va nafis", ru: "Сладкий и изысканный", en: "Sweet and refined" },
-    blend: "Arabica + Robusta",
-    body: 6,
-    roast: "medium",
-    notes: ["vanilla", "biscuit", "nuts"],
+    blend: "100% Arabica", body: 6, roast: "medium", notes: ["vanilla", "milkChocolate", "caramel", "nuts"],
   },
   "beans-espresso": {
     subtitle: { uz: "To'liq tanali klassika", ru: "Полнотелая классика", en: "Full-bodied classic" },
-    blend: "Arabica + Robusta",
-    body: 7,
-    roast: "medium",
-    notes: ["yellowFruit", "cocoa", "caramel"],
+    blend: "Arabica + Robusta", body: 7, roast: "medium", notes: ["cocoa", "liquorice", "caramel"],
   },
   "beans-granaroma": {
     subtitle: { uz: "Shokoladli va kuchli", ru: "Шоколадный и интенсивный", en: "Chocolaty and intense" },
-    blend: "Arabica + Robusta",
-    body: 8,
-    roast: "dark",
-    notes: ["chocolate", "cocoa", "spices"],
+    blend: "60% Arabica · 40% Robusta", body: 8, roast: "medium", notes: ["cocoa", "nuts", "spices", "yellowFruit"],
   },
   "beans-arabica": {
     subtitle: { uz: "Nozik va xushbo'y", ru: "Деликатный и ароматный", en: "Delicate and aromatic" },
-    blend: "100% Arabica",
-    body: 4,
-    roast: "medium",
-    notes: ["yellowFruit", "flowers", "vanilla"],
+    blend: "100% Arabica", body: 4, roast: "medium", notes: ["chocolate", "nuts", "caramel", "biscuit"],
   },
   "ground-granaroma": {
     subtitle: { uz: "Har kungi boy ta'm", ru: "Богатый вкус на каждый день", en: "Rich everyday taste" },
-    blend: "Arabica + Robusta",
-    body: 7,
-    roast: "dark",
-    notes: ["chocolate", "cocoa", "biscuit"],
+    blend: "Arabica + Robusta", body: 7, roast: "medium", notes: ["cocoa", "yellowFruit", "spices", "nuts"],
   },
   "ground-antica-bottega": {
     subtitle: { uz: "Yumshoq va mayin", ru: "Мягкий и нежный", en: "Smooth and gentle" },
-    blend: "Arabica + Robusta",
-    body: 5,
-    roast: "medium",
-    notes: ["vanilla", "nuts", "biscuit"],
+    blend: "Arabica + Robusta", body: 5, roast: "medium", notes: ["chocolate", "nuts", "vanilla"],
   },
   "ground-espressocasa": {
     subtitle: { uz: "Uydagi haqiqiy espresso", ru: "Настоящий эспрессо дома", en: "True espresso at home" },
-    blend: "Arabica + Robusta",
-    body: 8,
-    roast: "dark",
-    notes: ["spices", "cocoa", "caramel"],
+    blend: "Arabica + Robusta", body: 8, roast: "medium", notes: ["spices", "cocoa", "caramel"],
   },
   "ground-arabica-tin": {
     subtitle: { uz: "Afsonaviy bankada", ru: "В легендарной банке", en: "In the iconic tin" },
@@ -170,5 +149,25 @@ export const productDetails: Record<string, ProductDetail> = {
     body: null,
     roast: null,
     notes: [],
+  },
+  "cl-600": {
+    subtitle: { uz: "Kuchli va yumaloq", ru: "Интенсивный и округлый", en: "Intense & round" },
+    blend: "60% Arabica · 40% Robusta", body: 8, roast: "dark", notes: ["chocolate", "spices", "cocoa"],
+  },
+  "cl-800": {
+    subtitle: { uz: "Muvozanat va krema", ru: "Баланс и крема", en: "Balance & crema" },
+    blend: "80% Arabica · 20% Robusta", body: 6, roast: "medium", notes: ["chocolate", "nuts", "caramel"],
+  },
+  "so-brazil": {
+    subtitle: { uz: "Zich va shirin", ru: "Плотный и сладкий", en: "Dense & sweet" },
+    blend: "100% Arabica · Alta Mogiana", body: 7, roast: "medium", notes: ["cocoa", "nuts", "biscuit"],
+  },
+  "so-honduras": {
+    subtitle: { uz: "Nafis va muvozanatli", ru: "Элегантный и сбалансированный", en: "Elegant & balanced" },
+    blend: "100% Arabica · SHG", body: 6, roast: "medium", notes: ["milkChocolate", "nuts", "caramel", "yellowFruit"],
+  },
+  "so-colombia": {
+    subtitle: { uz: "Yorqin va murakkab", ru: "Яркий и комплексный", en: "Bright & complex" },
+    blend: "100% Arabica · Supremo", body: 6, roast: "medium", notes: ["caramel", "milkChocolate", "redFruits", "nuts"],
   },
 };

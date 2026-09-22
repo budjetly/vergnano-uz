@@ -74,9 +74,10 @@ export default function ProductCard({
           </div>
         )}
 
-        <p className="mt-2 flex-1 text-sm leading-relaxed text-cocoa">
+        <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-cocoa">
           {product.description[locale]}
         </p>
+        <div className="flex-1" />
 
         <div className="mt-3 flex flex-wrap gap-1.5">
           <span className="rounded-full bg-cream px-2.5 py-1 text-[11px] text-cocoa">

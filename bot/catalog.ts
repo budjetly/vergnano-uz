@@ -76,13 +76,22 @@ function productKeyboard(prod: Product, qty: number, cat: Cat, page: number, loc
     .text(t.viewCart, "cart");
 }
 
+// Telegram captions are capped at 1024 chars; keep whole sentences and leave
+// room for the notes / intensity / format / price lines that follow.
+function shortDescription(text: string, max = 520): string {
+  if (text.length <= max) return text;
+  const cut = text.slice(0, max);
+  const end = Math.max(cut.lastIndexOf(". "), cut.lastIndexOf("; "));
+  return (end > 200 ? cut.slice(0, end + 1) : cut.trimEnd() + "…");
+}
+
 function productCaption(prod: Product, locale: BotLocale) {
   const t = botDicts[locale];
   const dict = getDictionary(locale);
   const d = productDetails[prod.id];
   const lines = [`<b>${esc(prod.name)}</b>`];
   if (prod.collection) lines.push(`<i>${esc(dict.products.collections[prod.collection])}</i>`);
-  lines.push("", esc(prod.description[locale]), "");
+  lines.push("", esc(shortDescription(prod.description[locale])), "");
   if (d && d.notes.length) lines.push(`🍫 ${d.notes.map((n) => dict.products.detail.notes[n]).join(" · ")}`);
   if (prod.intensity !== null) lines.push(`🔥 ${t.intensity}: ${prod.intensity}/10`);
   lines.push(`📦 ${t.format}: ${esc(prod.packSize)}`, "", `💰 <b>${fmt(prod.price)} ${dict.currency}</b>`);

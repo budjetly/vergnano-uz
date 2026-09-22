@@ -45,7 +45,7 @@ export default async function AboutPage({
           className="object-cover object-[50%_22%]"
         />
         <div className="absolute inset-0 bg-black/35" />
-        <div className="relative mx-auto flex min-h-[50vh] max-w-7xl flex-col items-center justify-center px-4 py-24 text-center [text-shadow:0_2px_24px_rgba(0,0,0,0.5)]">
+        <div className="relative mx-auto flex min-h-[56vh] max-w-7xl flex-col items-center justify-center px-4 pb-24 pt-32 text-center [text-shadow:0_2px_24px_rgba(0,0,0,0.5)]">
           <p className="animate-fade-up mb-4 text-[11px] font-semibold uppercase tracking-[0.25em] text-tan">
             {dict.about.title}
           </p>

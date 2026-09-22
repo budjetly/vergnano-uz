@@ -45,7 +45,7 @@ export default async function HomePage({
           <source src="/videos/hero-cover.mp4" type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-black/25" />
-        <div className="relative mx-auto flex min-h-[calc(100svh-80px)] max-w-7xl sm:min-h-[calc(100svh-85px)] flex-col items-center justify-center px-4 py-24 text-center [text-shadow:0_2px_24px_rgba(0,0,0,0.5)]">
+        <div className="relative mx-auto flex min-h-svh max-w-7xl flex-col items-center justify-center px-4 py-24 text-center [text-shadow:0_2px_24px_rgba(0,0,0,0.5)]">
           <h1
             className="animate-fade-up max-w-4xl text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl"
             style={{ animationDelay: "120ms" }}
